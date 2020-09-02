@@ -30,12 +30,6 @@ public class RockPaperScissors {
 
     public static void main(final String[] args) {
         
-        ////////////////////////////////////////////////////////////////////////
-        //Initializes the timer for the Rock, Paper, Scissors, Shoot!
-        Timer timer = new Timer();
-        TimerTask task = new TimerHelper();
-        timer.schedule(task, 1000, 1000);
-        ////////////////////////////////////////////////////////////////////////
         
         ////////////////////////////////////////////////////////////////////////
         //Variables
@@ -74,8 +68,22 @@ public class RockPaperScissors {
             //Store user choice
             int user_choice = scan.nextInt();
             
+            ////////////////////////////////////////////////////////////////////////
+            //Initializes the timer for the Rock, Paper, Scissors, Shoot!
+            TimerHelper.secondsPassed = 0;
+            Timer timer = new Timer();
+            TimerTask task = new TimerHelper();
+            timer.schedule(task, 1000, 1000);
+            ////////////////////////////////////////////////////////////////////////
+            
             ////////////////////////////////////////////////////////////////////
             //Get outcome of match, and based on the outcome, increase the appropriate value
+            try{
+                Thread.sleep(5000);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace();
+            }
             String outcome = determineOutcome(user_choice, comp_choice);
             if (null != outcome) 
                 switch (outcome) {
@@ -108,7 +116,6 @@ public class RockPaperScissors {
             if ("y".equals(user_cont.toLowerCase())) {
                 
                 cont = true;
-                TimerHelper.secondsPassed = 0;
                 
             } else if ("n".equals(user_cont.toLowerCase())) {
                 
